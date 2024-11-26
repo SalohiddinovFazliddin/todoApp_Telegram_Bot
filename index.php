@@ -27,11 +27,18 @@
                 dolorem excepturi minima quasi,
                 voluptatum? A ab consectetur debitis, expedita iste odio
                 odit qui quidem quis rem rerum voluptatibus.</p>
+            <form action="add.php" method="post">
 
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
-                <button class=" btn btn-primary" type="button" id="button-addon2">Add</button>
+                <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2" name="title">
+                <select name="status" id="" style="margin: 0 20px;">
+                    <option value="pending">Pending</option>
+                    <option value="in_progress">In progress</option>
+                    <option value="completed">Completed</option>
+                </select>
+                <button class=" btn btn-primary" type="submit" id="button-addon2">Add</button>
             </div>
+            </form>
             <ul class="list-group mb-3">
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     an item
