@@ -7,11 +7,34 @@ $todo= new Todo();
 
 if ($uri=='/'){
     $todos=$todo->get();
-    view('home');
+    view('home',[
+    'todos'=>$todos]);
 
 }elseif ($uri=='/store'){
-    if (isset($_POST['title'])) {
+    if (!empty(isset($_POST['title'])) and !empty(isset($_POST['due_date']))) {
         $todo->store($_POST['title'], $_POST['due_date']);
         header('Location: /');
+    }
+
+}
+elseif ($uri=='/complete'){
+    if (!empty($_GET['id'])) {
+        $todo->complete($_GET['id']);
+        header('Location: /');
+        exit();
+    }
+}
+elseif ($uri=='/pending'){
+    if (!empty($_GET['id'])) {
+        $todo->pending($_GET['id']);
+        header('Location: /');
+        exit();
+    }
+}
+elseif ($uri=='/in_progress'){
+    if (!empty($_GET['id'])) {
+        $todo->in_progress($_GET['id']);
+        header('Location: /');
+        exit();
     }
 }

@@ -22,5 +22,23 @@ public function get () {
         return $stmt->fetchAll();
 
 }
+public function complete (int $id) {
+        $query = "UPDATE todos set status='completed' where  id=:id ";
+        return $this->pdo->prepare($query)->execute([
+            ":id" => $id
+        ]);
+}
+public function pending (int $id) {
+        $query = "UPDATE todos set status='pending' where  id=:id ";
+        return $this->pdo->prepare($query)->execute([
+            ":id" => $id
+        ]);
+}
+public function in_progress(int $id) {
+        $query = "UPDATE todos set status='in_progress' where  id=:id ";
+        return $this->pdo->prepare($query)->execute([
+            ":id" => $id
+        ]);
+}
 
 }
