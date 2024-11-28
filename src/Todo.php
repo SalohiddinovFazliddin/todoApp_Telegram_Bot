@@ -23,19 +23,19 @@ public function get () {
 
 }
 public function complete (int $id) {
-        $query = "UPDATE todos set status='completed' where  id=:id ";
+        $query = "UPDATE todos set status='completed', updated_ad=Now() where  id=:id ";
         return $this->pdo->prepare($query)->execute([
             ":id" => $id
         ]);
 }
-public function pending (int $id) {
-        $query = "UPDATE todos set status='pending' where  id=:id ";
+public function inProgress(int $id):bool {
+        $query = "UPDATE todos set status='in_progress', updated_ad=Now() where  id=:id ";
         return $this->pdo->prepare($query)->execute([
             ":id" => $id
         ]);
 }
-public function in_progress(int $id) {
-        $query = "UPDATE todos set status='in_progress' where  id=:id ";
+public function pending(int $id):bool {
+        $query = "UPDATE todos set status='pending', updated_ad=Now() where  id=:id ";
         return $this->pdo->prepare($query)->execute([
             ":id" => $id
         ]);

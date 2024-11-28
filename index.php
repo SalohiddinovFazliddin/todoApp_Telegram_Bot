@@ -33,7 +33,7 @@ elseif ($uri=='/pending'){
 }
 elseif ($uri=='/in_progress'){
     if (!empty($_GET['id'])) {
-        $todo->in_progress($_GET['id']);
+        $todo->inProgress($_GET['id']);
         header('Location: /');
         exit();
     }

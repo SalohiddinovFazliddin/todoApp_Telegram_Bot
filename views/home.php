@@ -24,7 +24,9 @@
         .in_progress{
             color: red;
             font-weight: bold;
+            text-decoration: underline;
         }
+
     </style>
 </head>
 <body>
@@ -53,21 +55,32 @@
             /** @var TYPE_NAME $todos */
 
             foreach ($todos as $todo){
-
-                $isCompleted = $todo['status'] == 'completed' ? 'completed' : '';
-                $isProgress = $todo['status'] == 'in_progress' ? 'in_progress': '';
-
-                echo '<li class="'.$isCompleted.' '.$isProgress.' list-group-item d-flex justify-content-between align-items-center">
-                Name: '.$todo["title"].' >>> Status: '.$todo["status"].'
-                <div>
-                    <a href="/in_progress?id='.$todo["id"].'" class="btn btn-outline-success">In progress</a>
-                    <a href="/complete?id='.$todo["id"].'" class="btn btn-outline-success">Complete</a>
-                    <a href="/pending?id='.$todo["id"].'" class="btn btn-outline-success">Pending</a>
-                </div>
-                </li>';
-
-
-
+                if ($todo['status']=='completed'){
+                    echo '<li class="'.$todo['status'].' list-group-item d-flex justify-content-between align-items-center">
+                    Name: '.$todo["title"].' >>> Status: '.$todo["status"].'
+                    <div>
+                        <a href="in_progress?id='.$todo["id"].'" class="btn btn-outline-primary">In progress</a>
+                        <a href="/pending?id='.$todo["id"].'" class="btn btn-outline-success">Pending</a>
+                    </div>
+                    </li>';
+                }elseif ($todo['status']=='pending'){
+                    echo '<li class="'.$todo['status'].' list-group-item d-flex justify-content-between align-items-center">
+                    Name: '.$todo["title"].' >>> Status: '.$todo["status"].'
+                    <div>
+                        <a href="in_progress?id='.$todo["id"].'" class="btn btn-outline-primary">In progress</a>
+                        <a href="/complete?id='.$todo["id"].'" class="btn btn-outline-success">Complete</a>
+                    </div>
+                    </li>';
+                }
+                else{
+                    echo '<li class="'.$todo['status'].' list-group-item d-flex justify-content-between align-items-center">
+                    Name: '.$todo["title"].' >>> Status: '.$todo["status"].'
+                    <div>
+                        <a href="pending?id='.$todo["id"].'" class="btn btn-outline-success">Pending</a>
+                        <a href="/complete?id='.$todo["id"].'" class="btn btn-outline-success">Complete</a>
+                    </div>
+                    </li>';
+                }
             }
             ?>
 
