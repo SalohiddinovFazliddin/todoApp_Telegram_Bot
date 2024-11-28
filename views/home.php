@@ -60,7 +60,7 @@
                     Name: '.$todo["title"].' >>> Status: '.$todo["status"].'
                     <div>
                         <a href="in_progress?id='.$todo["id"].'" class="btn btn-outline-primary">In progress</a>
-                        <a href="/pending?id='.$todo["id"].'" class="btn btn-outline-success">Pending</a>
+                        <a href="/pending?id='.$todo["id"].'" class="btn btn-outline-warning">Pending</a>
                     </div>
                     </li>';
                 }elseif ($todo['status']=='pending'){
@@ -76,7 +76,7 @@
                     echo '<li class="'.$todo['status'].' list-group-item d-flex justify-content-between align-items-center">
                     Name: '.$todo["title"].' >>> Status: '.$todo["status"].'
                     <div>
-                        <a href="pending?id='.$todo["id"].'" class="btn btn-outline-success">Pending</a>
+                        <a href="pending?id='.$todo["id"].'" class="btn btn-outline-warning">Pending</a>
                         <a href="/complete?id='.$todo["id"].'" class="btn btn-outline-success">Complete</a>
                     </div>
                     </li>';
