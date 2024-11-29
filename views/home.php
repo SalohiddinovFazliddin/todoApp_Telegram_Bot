@@ -9,9 +9,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
     <style>
+        .body{
+            background-image: url("https://images.pexels.com/photos/2736499/pexels-photo-2736499.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1;");
+        }
         .todo-body{
             max-width: 700px;
             box-shadow: 0 0 5px 5px #ccc;
+            background: bisque;
         }
         .todo-text{
             font-weight: bold;
@@ -29,7 +33,7 @@
 
     </style>
 </head>
-<body>
+<body class="body">
 <div class="container">
     <div class="row d-flex justify-content-center">
         <div class="todo-body my-5 p-3">
@@ -38,7 +42,7 @@
                 dolorem excepturi minima quasi,
                 voluptatum? A ab consectetur debitis, expedita iste odio
                 odit qui quidem quis rem rerum voluptatibus.</p>
-            <form action="/store" method="post">
+            <form action="/todos" method="post">
 
                 <div class="input-group mb-3">
 
@@ -91,3 +95,6 @@
 </div>
 </body>
 </html>
+
+
+

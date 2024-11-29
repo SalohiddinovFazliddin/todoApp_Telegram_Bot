@@ -16,7 +16,7 @@ class Todo
         ":due_date" => $dueDate
     ]);
 }
-public function get () {
+public function getAllTodos () {
         $query="SELECT*from todos";
         $stmt = $this->pdo->query($query);
         return $stmt->fetchAll();
