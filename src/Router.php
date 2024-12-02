@@ -7,13 +7,23 @@ class Router
         $this->currentRounte=parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
     }
+
     public function get($route,$callback){
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            $resourceId=$this->getResourser();
+            $route = str_replace('{id}',$resourceId, $route);
             if ($route == $this->currentRounte) {
-                $callback();
+                $callback($resourceId);
                 exit();
             }
         }
+    }
+    public function getResourser(){
+        if (isset(explode("/",$this->currentRounte)[2])){
+            $resourceId=(int)explode("/",$this->currentRounte)[2];
+            return $resourceId ? $resourceId : false;
+        }
+        return false;
     }
     public function post($route,$callback){
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {

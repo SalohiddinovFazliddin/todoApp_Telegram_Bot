@@ -26,26 +26,22 @@ $router->post('/todos', function() use($todo) {
     }
 });
 
-$router->get('/complete', function()use($todo){
-    if (!empty($_GET['id'])) {
-        $todo->complete($_GET['id']);
+$router->get('/complete/{id}', function($todoId) use($todo){
+        $todo->complete($todoId);
         header('Location: /todos');
         exit();
-    }
+
 });
-$router->get('/pending', function()use($todo){
-    if (!empty($_GET['id'])) {
-        $todo->pending($_GET['id']);
+$router->get('/pending/{id}', function($todoId) use($todo){
+        $todo->pending($todoId);
         header('Location: /todos');
         exit();
-    }
+
 });
-$router->get('/in_progress', function()use($todo){
-    if (!empty($_GET['id'])) {
-        $todo->inProgress($_GET['id']);
+$router->get('/in_progress/{id}', function($todoId) use($todo){
+        $todo->inProgress($todoId);
         header('Location: /todos');
         exit();
-    }
 });
 
 
@@ -79,37 +75,3 @@ $router->get('/in_progress', function()use($todo){
 
 
 
-
-//if ($uri=='/'){
-//    $todos=$todo->get();
-//    view('home',[
-//    'todos'=>$todos]);
-//
-//}elseif ($uri=='/store'){
-//    if (!empty(isset($_POST['title'])) and !empty(isset($_POST['due_date']))) {
-//        $todo->store($_POST['title'], $_POST['due_date']);
-//        header('Location: /');
-//    }
-//
-//}
-//elseif ($uri=='/complete'){
-//    if (!empty($_GET['id'])) {
-//        $todo->complete($_GET['id']);
-//        header('Location: /');
-//        exit();
-//    }
-//}
-//elseif ($uri=='/pending'){
-//    if (!empty($_GET['id'])) {
-//        $todo->pending($_GET['id']);
-//        header('Location: /');
-//        exit();
-//    }
-//}
-//elseif ($uri=='/in_progress'){
-//    if (!empty($_GET['id'])) {
-//        $todo->inProgress($_GET['id']);
-//        header('Location: /');
-//        exit();
-//    }
-//}
