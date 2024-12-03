@@ -40,5 +40,11 @@ public function pending(int $id):bool {
             ":id" => $id
         ]);
 }
+//public function getEdit(int $id, string $title):bool {
+//        $query = "UPDATE todos set  title ='' , updated_ad=Now() where  id=:id ";
+//        return $this->pdo->prepare($query)->execute([
+//            ":id" => $id
+//        ]);
+//}
 
 }

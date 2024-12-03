@@ -8,13 +8,19 @@ $router = new Router();
 $todo= new Todo();
 
 $router->get('/', function(){
-    echo '<a href="/todos">Todos</a>';
+    view('home');
 });
+
+
+
+//$router->get('/todos/{id}/edit', function(){
+//    view('home');
+//});
 
 
 $router->get('/todos',function()use($todo){
     $todos = $todo->getAllTodos();
-    view('home',[
+    view('todos',[
         'todos'=>$todos
     ]);
 });
@@ -43,6 +49,18 @@ $router->get('/in_progress/{id}', function($todoId) use($todo){
         header('Location: /todos');
         exit();
 });
+
+
+
+
+
+
+
+//$router->get('/edit/{id}', function($todoId) use($todo){
+//        $todo->getEdit($todoId);
+//        header('Location: /todos');
+//        exit();
+//});
 
 
 
