@@ -12,10 +12,11 @@ $router->get('/', function(){
 });
 
 
-
-//$router->get('/todos/{id}/edit', function(){
-//    view('home');
+//
+//$router->get('/edit', function(){
+//    view('edit');
 //});
+
 
 
 $router->get('/todos',function()use($todo){
@@ -25,6 +26,7 @@ $router->get('/todos',function()use($todo){
     ]);
 });
 
+
 $router->post('/todos', function() use($todo) {
     if (!empty(isset($_POST['title'])) and !empty(isset($_POST['due_date']))) {
         $todo->store($_POST['title'], $_POST['due_date']);
@@ -32,35 +34,29 @@ $router->post('/todos', function() use($todo) {
     }
 });
 
-$router->get('/complete/{id}', function($todoId) use($todo){
-        $todo->complete($todoId);
-        header('Location: /todos');
-        exit();
+$router->post('/todosedit', function() use($todo) {
+    var_dump($_POST['title'], $_POST['due_date'],$_POST['status']);
+    if (!empty(isset($_POST['title'])) and !empty(isset($_POST['due_date'])) and !empty(isset($_POST['status']))) {
+        $todo->storeEdit($_POST['title'],$_POST['status'], $_POST['due_date']);
+        redirect('/todos');
+    }
 
 });
-$router->get('/pending/{id}', function($todoId) use($todo){
-        $todo->pending($todoId);
-        header('Location: /todos');
-        exit();
 
-});
-$router->get('/in_progress/{id}', function($todoId) use($todo){
-        $todo->inProgress($todoId);
-        header('Location: /todos');
-        exit();
+
+
+$router->get('/todos/{id}/delete', function($todoId) use($todo){
+        $todo->destory($todoId);
+        redirect('/todos');
 });
 
+$router->get('/todos/{id}/edit', function($todoId) use($todo){
+        $getTodo = $todo->getTodo($todoId);
+        view('edit',[
+            'todo'=>$getTodo
+        ]);
+});
 
-
-
-
-
-
-//$router->get('/edit/{id}', function($todoId) use($todo){
-//        $todo->getEdit($todoId);
-//        header('Location: /todos');
-//        exit();
-//});
 
 
 

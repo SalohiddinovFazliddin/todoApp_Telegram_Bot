@@ -59,35 +59,56 @@
                 /** @var TYPE_NAME $todos */
 
                 foreach ($todos as $todo){
-                    if ($todo['status']=='completed'){
-                        echo '<li class="'.$todo['status'].' list-group-item d-flex justify-content-between align-items-center">
+
+                    echo '<li class="'.$todo['status'].' list-group-item d-flex justify-content-between align-items-center">
                     Name: '.$todo["title"].' >>> Status: '.$todo["status"].'
                     <div>
-                        <a href="title/'.$todo["id"].'" class="btn btn-outline-danger">Edit</a>
-                        <a href="in_progress/'.$todo["id"].'" class="btn btn-outline-primary">In progress</a>
-                        <a href="/pending/'.$todo["id"].'" class="btn btn-outline-warning">Pending</a>
+                        <a href="/todos/'.$todo["id"].'/edit" class="btn btn-outline-success">Edit</a>
+                        <a href="/todos/'.$todo["id"].'/delete" class="btn btn-outline-danger">Delete</a>
                     </div>
                     </li>';
-                    }elseif ($todo['status']=='pending'){
-                        echo '<li class="'.$todo['status'].' list-group-item d-flex justify-content-between align-items-center">
-                    Name: '.$todo["title"].' >>> Status: '.$todo["status"].'
-                    <div>
-                        <a href="title/'.$todo["id"].' " class="btn btn-outline-danger">Edit</a>
-                        <a href="in_progress/'.$todo["id"].' " class="btn btn-outline-primary">In progress</a>
-                        <a href="/complete/'.$todo["id"].' " class="btn btn-outline-success">Complete</a>
-                    </div>
-                    </li>';
-                    }
-                    else{
-                        echo '<li class="'.$todo['status'].' list-group-item d-flex justify-content-between align-items-center">
-                    Name: '.$todo["title"].' >>> Status: '.$todo["status"].'
-                    <div>
-                        <a href="title/'.$todo["id"].'" class="btn btn-outline-danger">Edit</a>
-                        <a href="pending/'.$todo["id"].'" class="btn btn-outline-warning">Pending</a>
-                        <a href="/complete/'.$todo["id"].'" class="btn btn-outline-success">Complete</a>
-                    </div>
-                    </li>';
-                    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+//                    if ($todo['status']=='completed'){
+//                        echo '<li class="'.$todo['status'].' list-group-item d-flex justify-content-between align-items-center">
+//                    Name: '.$todo["title"].' >>> Status: '.$todo["status"].'
+//                    <div>
+//                        <a href="title/'.$todo["id"].'" class="btn btn-outline-danger">Edit</a>
+//                        <a href="/todos/'.$todo["id"].'/in_progress" class="btn btn-outline-success">In progress</a>
+//                        <a href="/pending/'.$todo["id"].'" class="btn btn-outline-primary">Pending</a>
+//                    </div>
+//                    </li>';
+//                    }elseif ($todo['status']=='pending'){
+//                        echo '<li class="'.$todo['status'].' list-group-item d-flex justify-content-between align-items-center">
+//                    Name: '.$todo["title"].' >>> Status: '.$todo["status"].'
+//                    <div>
+//                        <a href="title/'.$todo["id"].' " class="btn btn-outline-danger">Edit</a>
+//                        <a href="/todos/'.$todo["id"].'/in_progress " class="btn btn-outline-success">In progress</a>
+//                        <a href="/complete/'.$todo["id"].' " class="btn btn-outline-success">Complete</a>
+//                    </div>
+//                    </li>';
+//                    }
+//                    else{
+//                        echo '<li class="'.$todo['status'].' list-group-item d-flex justify-content-between align-items-center">
+//                    Name: '.$todo["title"].' >>> Status: '.$todo["status"].'
+//                    <div>
+//                        <a href="title/'.$todo["id"].'" class="btn btn-outline-danger">Edit</a>
+//                        <a href="pending/'.$todo["id"].'" class="btn btn-outline-primary">Pending</a>
+//                        <a href="/complete/'.$todo["id"].'" class="btn btn-outline-success">Complete</a>
+//                    </div>
+//                    </li>';
+
                 }
                 ?>
 
