@@ -16,14 +16,16 @@ class Todo
         ":due_date" => $dueDate
     ]);
 }
-public function storeEdit (string $title,string $status, string $dueDate) {
-        $query = "UPDATE todos set $title =$title ,status=$status, updated_ad=$dueDate where  id=:id ";
+    public function storeEdit(string $title, string $status, string $dueDate, int $id) {
+        $query = "UPDATE todos SET title = :title, status = :status, updated_ad = :due_date WHERE id = :id";
         $this->pdo->prepare($query)->execute([
-        ":title" => $title,
-        ":due_date" => $dueDate,
-        ":status" => $status
-    ]);
-}
+            ":title" => $title,
+            ":due_date" => $dueDate,
+            ":status" => $status,
+            ":id" => $id
+        ]);
+    }
+
 public function getAllTodos () {
         $query="SELECT*from todos";
         $stmt = $this->pdo->query($query);

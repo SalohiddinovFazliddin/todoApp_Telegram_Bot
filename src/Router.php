@@ -25,19 +25,19 @@ class Router
         }
         return false;
     }
-//    public function postResourser(){
-//        if (isset(explode("/",$this->currentRounte)[0])){
-//            $resourceId=(int)explode("/",$this->currentRounte)[0];
-//            return $resourceId ? $resourceId : false;
-//        }
-//        return false;
-//    }
+    public function postResourser(){
+        if (isset(explode("/",$this->currentRounte)[2])){
+            $resourceId=(int)explode("/",$this->currentRounte)[2];
+            return $resourceId ? $resourceId : false;
+        }
+        return false;
+    }
     public function post($route,$callback){
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-//            $resourceId=$this->postResourser();
-//            $route = str_replace('{id}',$resourceId, $route);
+            $resourceId=$this->postResourser();
+            $route = str_replace('{id}',$resourceId, $route);
             if ($route == $this->currentRounte) {
-                $callback();
+                $callback($resourceId);
                 exit();
             }
         }

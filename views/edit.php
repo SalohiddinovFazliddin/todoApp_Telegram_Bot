@@ -33,29 +33,30 @@
 <body>
 <div class="edit-container">
     <h2 class="edit-header">Edit Task</h2>
-    <form action="/todosedit" method="post">
+    <form action="/todosedit/<?= /** @var TYPE_NAME $todo */
+    $todo['id'] ?>" method="post">
         <div class="form-group">
             <label for="taskName" class="form-label">Task Name</label>
-            <input type="text" id="taskName" class="form-control" placeholder="Enter task name" name="title" value="<?= /** @var TYPE_NAME $todo */$todo['title'] ?>">
+            <input type="text" id="taskName" class="form-control" placeholder="Enter task name" name="title" value="<?= $todo['title'] ?>">
         </div>
         <div class="form-group">
             <label for="taskStatus" class="form-label">Status</label>
             <select id="taskStatus" class="form-select" name="status">
-                <option  value="pending"<?= $todo['status']=='completed'? 'selected': '' ?>>Pending</option>
-                <option  value="Completed"<?= $todo['status']=='completed'? 'selected': '' ?>>Completed</option>
-                <option  value="in_progress"<?= $todo['status']=='in_progress'? 'selected': '' ?>>InProgress</option>
+                <option value="pending" <?= $todo['status'] == 'pending' ? 'selected' : '' ?>>Pending</option>
+                <option value="Completed" <?= $todo['status'] == 'Completed' ? 'selected' : '' ?>>Completed</option>
+                <option value="in_progress" <?= $todo['status'] == 'in_progress' ? 'selected' : '' ?>>In Progress</option>
             </select>
         </div>
-
         <div class="form-group">
             <label for="taskDueDate" class="form-label">Due Date</label>
-            <input type="datetime-local" id="taskDueDate" class="form-control" name = "due_date" value="<?= $todo['due_date']?>">
+            <input type="datetime-local" id="taskDueDate" class="form-control" name="due_date" value="<?= $todo['due_date'] ?>">
         </div>
         <div class="btn-actions">
             <button type="submit" class="btn btn-primary">Save Changes</button>
             <a href="/todos" class="btn btn-secondary">Back to Todo list</a>
         </div>
     </form>
+
 </div>
 </body>
 </html>
