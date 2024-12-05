@@ -8,6 +8,14 @@ class Router
 
     }
 
+    public function getResourser(){
+        if (isset(explode("/",$this->currentRounte)[2])){
+            $resourceId=(int)explode("/",$this->currentRounte)[2];
+            return $resourceId ? $resourceId : false;
+        }
+        return false;
+    }
+
     public function get($route,$callback){
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $resourceId=$this->getResourser();
@@ -18,29 +26,32 @@ class Router
             }
         }
     }
-    public function getResourser(){
-        if (isset(explode("/",$this->currentRounte)[2])){
-            $resourceId=(int)explode("/",$this->currentRounte)[2];
-            return $resourceId ? $resourceId : false;
-        }
-        return false;
-    }
-    public function postResourser(){
-        if (isset(explode("/",$this->currentRounte)[2])){
-            $resourceId=(int)explode("/",$this->currentRounte)[2];
-            return $resourceId ? $resourceId : false;
-        }
-        return false;
-    }
+
     public function post($route,$callback){
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $resourceId=$this->postResourser();
+            $resourceId=$this->getResourser();
             $route = str_replace('{id}',$resourceId, $route);
             if ($route == $this->currentRounte) {
                 $callback($resourceId);
                 exit();
             }
         }
+    }
+
+
+    public function put($route, $callback)
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if ($_POST['_method'] == 'PUT') {
+                $resourceId=$this->getResourser();
+                $route = str_replace('{id}',$resourceId, $route);
+                if ($route == $this->currentRounte) {
+                    $callback($resourceId);
+                    exit();
+                }
+            }
+        }
+
     }
 
 }

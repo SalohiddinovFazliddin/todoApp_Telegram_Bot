@@ -16,15 +16,19 @@ class Todo
         ":due_date" => $dueDate
     ]);
 }
-    public function storeEdit(string $title, string $status, string $dueDate, int $id) {
-        $query = "UPDATE todos SET title = :title, status = :status, updated_ad = :due_date WHERE id = :id";
-        $this->pdo->prepare($query)->execute([
+    public function update (int $id, string $title, string $status, string $dueDate) {
+        $query = "UPDATE todos set
+            title=:title,status=:status, due_date=:due_date, updated_ad=NOW() where id=:id";
+
+        $stmt = $this->pdo->prepare($query);
+        return $stmt->execute([
+            ":id" => $id,
             ":title" => $title,
-            ":due_date" => $dueDate,
             ":status" => $status,
-            ":id" => $id
+            ":due_date" => $dueDate
         ]);
     }
+
 
 public function getAllTodos () {
         $query="SELECT*from todos";
@@ -50,24 +54,3 @@ public function getTodo (int $id){
 
 
 }
-
-
-
-//public function complete (int $id) {
-//    $query = "UPDATE todos set status='completed', updated_ad=Now() where  id=:id ";
-//    return $this->pdo->prepare($query)->execute([
-//        ":id" => $id
-//    ]);
-//}
-//public function inProgress(int $id):bool {
-//    $query = "UPDATE todos set status='in_progress', updated_ad=Now() where  id=:id ";
-//    return $this->pdo->prepare($query)->execute([
-//        ":id" => $id
-//    ]);
-//}
-//public function pending(int $id):bool {
-//    $query = "UPDATE todos set status='pending', updated_ad=Now() where  id=:id ";
-//    return $this->pdo->prepare($query)->execute([
-//        ":id" => $id
-//    ]);
-//}
