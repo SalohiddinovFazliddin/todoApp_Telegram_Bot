@@ -1,5 +1,6 @@
 <?php
-require  'DB.php';
+namespace App;
+use App\DB;
 
 class Todo
 {

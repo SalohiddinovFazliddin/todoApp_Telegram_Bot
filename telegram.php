@@ -1,4 +1,5 @@
 <?php
+
 require 'vendor/autoload.php';
 
 use GuzzleHttp\Client;
@@ -7,22 +8,22 @@ use Dotenv\Dotenv;
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-$botToken = getenv('BOT_TOKEN');
-$chatId = getenv('CHAT_ID');
-$dbHost = getenv('DB_HOST');
-$dbName = getenv('DB_NAME');
-$dbUser = getenv('DB_USER');
-$dbPass = getenv('DB_PASS');
+$botToken = $_ENV['BOT_TOKEN'];
+$chatId = $_ENV['CHAT_ID'];
+$dbHost = $_ENV['DB_HOST'];
+$dbName = $_ENV['DB_NAME'];
+$dbUser = $_ENV['DB_USER'];
+$dbPass = $_ENV['DB_PASS'];
 
 if (!$botToken || !$chatId || !$dbHost || !$dbName || !$dbUser || !$dbPass) {
     die("Kerakli sozlamalar .env faylda mavjud emas.");
 }
 
-try {
+
     $pdo = new PDO("mysql:host=$dbHost;dbname=$dbName;charset=utf8", $dbUser, $dbPass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $stmt = $pdo->query("SELECT * FROM users");
+    $stmt = $pdo->query("SELECT * FROM todos");
     $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     if (empty($users)) {
@@ -31,7 +32,7 @@ try {
 
     $message = "Foydalanuvchilar ro'yxati:\n\n";
     foreach ($users as $user) {
-        $message .= "ID: {$user['id']}, Chat ID: {$user['chat_id']}, Name: {$user['name']}\n";
+        $message .= "ID: {$user['id']}, Status: {$user['status']}, Name: {$user['title']}\n";
     }
 
     $client = new Client([
@@ -53,8 +54,3 @@ try {
         echo "Xatolik yuz berdi: " . $result['description'] . "\n";
     }
 
-} catch (\PDOException $e) {
-    echo "Database xatosi: " . $e->getMessage() . "\n";
-} catch (\Exception $e) {
-    echo "HTTP xatolik: " . $e->getMessage() . "\n";
-}
