@@ -14,16 +14,17 @@ require 'helpers.php';
 $router = new Router();
 $todo= new Todo();
 
-$router->put("/todos/{id}/update",fn($todoId)=>require 'controller/updateTodosController.php');
+$router->get('/',fn()=>require 'controllers/homeController.php');
 
-$router->get('/todos/{id}/update',fn($todoId)=>require 'controller/editTodoController.php');
+$router->put("/todos/{id}/update",fn($todoId)=>require 'controllers/updateTodosController.php');
 
-$router->get('/',fn()=>require './controller/homeController.php');
-
-$router->get('/todos',fn()=>require 'controller/getTodosController.php');
+$router->get('/todos/{id}/update',fn($todoId)=>require 'controllers/editTodoController.php');
 
 
-$router->post('/todos',fn()=>require 'controller/postTodosController.php');
+$router->get('/todos',fn()=>require 'controllers/getTodosController.php');
+
+
+$router->post('/todos',fn()=>require 'controllers/postTodosController.php');
 
 
 $router->get('/todos/{id}/delete', function($todoId) use($todo){
