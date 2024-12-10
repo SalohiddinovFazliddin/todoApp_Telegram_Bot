@@ -1,6 +1,7 @@
 
 <?php
 require 'views/components/header.php';
+require 'views/components/navbar.php';
 ?>
 ?>
 <div class="edit-container">
