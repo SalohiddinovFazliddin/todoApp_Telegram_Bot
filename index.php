@@ -1,7 +1,8 @@
 <?php
 
 require 'bootstrap.php';
-require 'routers/web.php';
+
+require 'routes.php';
 ?>
 
 

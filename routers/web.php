@@ -5,7 +5,7 @@ $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 use App\Todo;
 use App\Router;
 
-require 'helpers.php';
+
 
 $router = new Router();
 $todo= new Todo();
