@@ -27,6 +27,7 @@ class Router
         }
     }
 
+
     public function post($route,$callback){
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $resourceId=$this->getResourser();
@@ -37,9 +38,20 @@ class Router
             }
         }
     }
+ public function delete($route,$callback): void
+ {
+        if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
+            $resourceId=$this->getResourser();
+            $route = str_replace('{id}',$resourceId, $route);
+            if ($route == $this->currentRounte) {
+                $callback($resourceId);
+                exit();
+            }
+        }
+    }
 
 
-    public function put($route, $callback)
+    public function put($route, $callback): void
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($_POST['_method'] == 'PUT') {
@@ -52,6 +64,10 @@ class Router
             }
         }
 
+    }
+    public function isApiCall(): bool
+    {
+        return mb_stripos($this->currentRounte, '/api') === 0;
     }
 
 }
